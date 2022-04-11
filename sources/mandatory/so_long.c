@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/12 00:00:20 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/12 00:30:07 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,26 +116,28 @@ void	map_render(t_game *g)
 void loop_handler(t_game *g)
 {
 	static int	index = 0;
-	int			index2;
+	static int	index2 = 0;
 	t_img img[4];
 	
 	int (*put)(void *, void *, void *, int, int) = mlx_put_image_to_window;
 	void *(*f)() = mlx_xpm_file_to_image;
-	index2 = 0;
 	img[0].img = f(g->m_ptr, "Sprites/ir1.xpm", &(img[0].w), &(img[0].h));
 	img[1].img = f(g->m_ptr, "Sprites/ir2.xpm", &(img[1].w), &(img[1].h));
 	img[2].img = f(g->m_ptr, "Sprites/ir3.xpm", &(img[2].w), &(img[2].h));
 	img[3].img = f(g->m_ptr, "Sprites/ir4.xpm", &(img[3].w), &(img[3].h));
-	put(g->m_ptr, g->m_win, g->sprite[1].img, (g->coord.x+ 1) * 15 - g->sprite[1].w, (g->coord.y+ 1) * 15 - g->sprite[1].h);
-	put(g->m_ptr, g->m_win, img[index].img, (g->coord.x + 1) * 15 - img[index].w, (g->coord.y + 1) * 15 - img[index].h);
-	if (index < 3)
-		index++;
+	if (index2 == 500)
+	{
+		free (g->sprite[3].img);
+		g->sprite[3] = img[index];
+		put_img(g, g->coord.x, g->coord.y);
+		index2 = 0;
+		if (index < 3)
+			index++;
+		else
+			index = 0;
+	}
 	else
-		index = 0;
-	while (++index2 < 200000000)
-	{}
-	
-		
+		index2++;
 	
 }
 
