@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/11 23:52:07 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/12 00:00:20 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void loop_handler(t_game *g)
 		index++;
 	else
 		index = 0;
-	while (++index2 < 100000000)
+	while (++index2 < 200000000)
 	{}
 	
 		
