@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 12:05:43 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/12 15:40:41 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:35:11 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_coord
 	int	y;
 	int	e_x;
 	int	e_y;
+	int	b_x;
+	int	b_y;
 }	t_coord;
 
 typedef struct s_game
@@ -51,5 +53,6 @@ typedef struct s_game
 	int		facing;
 	int		goal;
 	int		frame;
+	int		last_moved[2];
 }	t_game;
 #endif

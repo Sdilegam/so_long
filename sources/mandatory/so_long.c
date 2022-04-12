@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/12 15:50:33 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:36:29 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,15 @@ void	put_img(t_game *g, int x, int y)
 			img = g->chest[g->frame];
 		else if (g->map.map[y][x] == 'P')
 			img = g->chara[g->facing][g->frame];
+		else if (g->map.map[y][x] == 'B')
+			img = g->sprite[2];
 		else if (g->map.map[y][x] == 'E')
 			img = g->sprite[3];
 	}
-	put(g->m_ptr, g->m_win, img.img, pixel_x - img.w, pixel_y - img.h);
+	if (g->map.map[y][x] != '0')
+	{
+		put(g->m_ptr, g->m_win, img.img, pixel_x - img.w, pixel_y - img.h);
+	}
 }
 
 void	map_render(t_game *g)
@@ -140,7 +145,7 @@ void	update(t_game *g)
 	}
 }
 
-void loop_handler(t_game *g)
+int loop_handler(t_game *g)
 {
 	static int index = -1;
 	static int index2 = 0;
@@ -169,18 +174,75 @@ void loop_handler(t_game *g)
 		g->sprite[3] = g->sprite[4];
 		put_img(g, g->coord.e_x, g->coord.e_y);
 	}
+	return (0);
 }
 
-int	move_character(t_game *g, int x, int y)
+
+void	move_enemy(t_game *g, int x, int y, int dest_x, int dest_y)
+{
+	int		pre_x;
+	int		pre_y;
+	char	tile;
+
+	tile = g->map.map[dest_y][dest_x];
+	if (tile != '1' && tile != 'E' && tile != 'C' && tile != 'B' && tile != 'P')
+	{
+		g->map.map[y][x] = '0';
+		put_img(g, x, y);
+		g->map.map[dest_y][dest_x] = 'B';
+		put_img(g, dest_x, dest_y);
+		g->last_moved[0] = dest_x;
+		g->last_moved[1] = dest_y;
+	}
+	if (tile == 'P')
+	{
+		printf("You lost!");
+		exit(0);
+	}
+}
+
+void	enemy_path(t_game *g, int x, int y)
+{
+	if (x > g->coord.x && g->facing != 2)
+		move_enemy(g, x, y, x - 1, y);
+	else if (x < g->coord.x && g->facing != 3)
+		move_enemy(g, x, y, x + 1, y);
+	else if (y > g->coord.y && g->facing != 1)
+		move_enemy(g, x, y, x, y - 1);
+	else if (y < g->coord.y && g->facing != 0)
+		move_enemy(g, x, y, x, y + 1);
+}
+
+void	update_enemy(t_game *g)
+{
+	int		index1;
+	int		index2;
+
+	index2 = -1;
+	while (++index2 < g->map.h)
+	{
+		index1 = -1;
+		while (++index1 < g->map.w)
+		{
+			if (g->map.map[index2][index1] == 'B' && g->last_moved[0] != index1 && g->last_moved[1] != index2)
+				enemy_path(g, index1, index2);
+		}
+	}
+	g->last_moved[0] = -1;
+	g->last_moved[1] = -1;
+}
+
+void	move_character(t_game *g, int x, int y)
 {
 	int	pre_x;
 	int	pre_y;
 
 	pre_x = g->coord.x;
 	pre_y = g->coord.y;
-	if (g->map.map[y][x] != '1' && g->map.map[y][x] != 'E')
+	if (g->map.map[y][x] != '1' && g->map.map[y][x] != 'E' && g->map.map[y][x] != 'B')
 	{
-		printf("You have done %d moves.\n", g->moves++);
+		update_enemy(g);
+		printf("You have done %d moves.\n", ++g->moves);
 		if (g->map.map[y][x] == 'C')
 			g->goal--;
 		g->map.map[pre_y][pre_x] = '0';
@@ -195,13 +257,15 @@ int	move_character(t_game *g, int x, int y)
 		printf("the end");
 		exit(0);
 	}
+	if (g->map.map[y][x] == 'B')
+	{
+		printf("You lost!");
+		exit(0);
+	}
 }
 
-int	handle_keys(int key, void *game)
+void	move_keys(int key, t_game *g)
 {
-	t_game	*g;
-
-	g = (t_game *)game;
 	if (key == 123)
 	{
 		g->facing = 3;
@@ -212,16 +276,28 @@ int	handle_keys(int key, void *game)
 		g->facing = 2;
 		move_character(g, g->coord.x + 1, g->coord.y);
 	}
-	else if (key == 126)
-	{
-		g->facing = 0;
-		move_character(g, g->coord.x, g->coord.y - 1);
-	}
 	else if (key == 125)
 	{
 		g->facing = 1;
 		move_character(g, g->coord.x, g->coord.y + 1);
 	}
+	else
+	{
+		g->facing = 0;
+		move_character(g, g->coord.x, g->coord.y - 1);
+	}
+}
+
+
+int	handle_keys(int key, void *game)
+{
+	t_game	*g;
+
+	g = (t_game *)game;
+	if (123 <= key && key <=126)
+		move_keys(key, g);
+
+	return(0);
 }
 
 void	chara_image(t_game *g)
@@ -265,7 +341,7 @@ void environment_image(t_game *g)
 	img[3].img = f(g->m_ptr, "Sprites/chest4.xpm", &(img[3].w), &(img[3].h));
 	img = g->sprite;
 	img[0].img = f(g->m_ptr, "Sprites/wall.xpm", &(img[0].w), &(img[0].h));
-	img[1].img = f(g->m_ptr, "Sprites/floor.xpm", &(img[1].w), &(img[1].h));
+	img[1].img = f(g->m_ptr, "Sprites/floor2.xpm", &(img[1].w), &(img[1].h));
 	img[2].img = f(g->m_ptr, "Sprites/enemy.xpm", &(img[2].w), &(img[2].h));
 	img[3].img = f(g->m_ptr, "Sprites/c_end.xpm", &(img[3].w), &(img[3].h));
 	img[4].img = f(g->m_ptr, "Sprites/o_end.xpm", &(img[4].w), &(img[4].h));

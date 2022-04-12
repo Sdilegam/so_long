@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/12 05:28:28 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/12 17:53:53 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LIB_DIR			=	libraries/
 SOURCES			=	${NAME}.c get_next_line.c get_next_line_utils.c#Files to compile#
 OBJECTS 		=	${addprefix ${OBJECTS_DIR}, ${SOURCES:.c=.o}}
 DEPENDS			=	${OBJECTS:.o=.d}
-LIBRARIES		=	mlx/libmlx.dylib
+LIBRARIES		=	mlx/libmlx.a
 EXECUTABLES		=	${NAME} #Modify if other executables needed#
 
 #####################################
@@ -67,12 +67,10 @@ SILENT			=	@
 #####################################
 
 all:				mandatory bonus
-${NAME}:			mandatory
 re:					fclean all
 
-mandatory:			${OBJECTS_DIR} ${EXECUTABLES}
+mandatory:			${NAME}
 bonus:				
-			#Bonus rule 
 
 #####################################
 #									#
@@ -81,16 +79,18 @@ bonus:
 #####################################
 
 ${OBJECTS_DIR}%.o:	${addprefix ${SOURCES_DIR}${SUB_DIR}, %.c}
-			${SILENT} echo  "\033[K\rCreating \"${@F:.c=.o}\".\c"
+			${SILENT} echo  "\rCreating \"${@F:.c=.o}\".\033[K\c"
 			${SILENT}${CC} ${CC_FLAGS} -MMD -c $< -o ${OBJECTS_DIR}${@F:.c=.o}
 			${SILENT} sleep ${SLEEP_TIME}
 
 ${LIB_DIR}${LIBRARIES}:		
-			${SILENT} make -C $(@D)
+			${SILENT} echo  "\rCreating \"${notdir $@}\".\033[K\c"
+			${SILENT} make -sC $(@D)
+			${SILENT} echo "\r\Library \"${notdir $@}\" created\033[K"
 
-${EXECUTABLES}:		${OBJECTS} ${addprefix ${LIB_DIR}, ${LIBRARIES}}
+${NAME}:		${OBJECTS} ${addprefix ${LIB_DIR}, ${LIBRARIES}}
 			${SILENT} echo "\r\"$@\" executable created\033[K"
-			${SILENT} ${CC} ${addprefix -L, ${LIB_DIR}${dir ${LIBRARIES}}} ${addprefix -l, ${patsubst lib%.dylib, %, ${notdir ${LIBRARIES}}}} -framework OpenGL -framework AppKit $? -o $@
+			${SILENT} ${CC} ${addprefix -L, ${LIB_DIR}${dir ${LIBRARIES}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARIES}}}} -framework OpenGL -framework AppKit ${OBJECTS} -o $@
 			${SILENT} sleep ${SLEEP_TIME}
 
 			
@@ -117,16 +117,16 @@ clean_bonus:
 clean_libs:
 
 			${SILENT} echo "\rRemoving libraries (${notdir ${LIBRARIES}}).\033[K\c"
-			${SILENT} make clean -C ${addprefix ${LIB_DIR}, ${dir ${LIBRARIES}}}
+			${SILENT} make clean -sC ${addprefix ${LIB_DIR}, ${dir ${LIBRARIES}}}
 			${SILENT} sleep ${SLEEP_TIME}
 
 clean_exe:
 
 			${SILENT} echo "\rRemoving executables (${notdir ${EXECUTABLES}}).\033[K\c"
-			${SILENT} ${RM} ${EXECUTABLES} ${EXECUTABLES}
+			${SILENT} ${RM} ${EXECUTABLES}
 			${SILENT} sleep ${SLEEP_TIME}
 
-fclean:			clean clean_libs clean_exe clean_bonus
+fclean:			clean clean_libs clean_exe #clean_bonus
 			${SILENT} echo "\rEverything removed.\033[K"
 				
 #####################################
