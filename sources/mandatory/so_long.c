@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/12 19:36:29 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:42:39 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,33 @@ t_map	read_map(char *path)
 	return (map);
 }
 
+void	put_itow(t_game *g, int x, int y, t_img sprite)
+{
+	void	*ptr;
+	void	*win;
+	t_img	*img;
+	int		size[2];
+
+	x = (x + 1) * BIT;
+	y = (y + 1) * BIT;
+	ptr = g->m_ptr;
+	win = g->m_win;
+	img = sprite.img;
+	size[0] = sprite.w;
+	size[1] = sprite.h;
+	mlx_put_image_to_window(ptr, win, img, x - size[0], y - size[1]);
+}
+
 void	put_img(t_game *g, int x, int y)
 {
 	t_img	img;
-	int		pixel_x;
-	int		pixel_y;
-	int		(*put)(void *, void *, void *, int, int);
 
-	pixel_x = (x + 1) * BIT;
-	pixel_y = (y + 1) * BIT;
-	put = mlx_put_image_to_window;
 	if (g->map.map[y][x] == '1')
 		img = g->sprite[0];
 	else
 	{
 		img = g->sprite[1];
-		put(g->m_ptr, g->m_win, img.img, pixel_x - img.w, pixel_y - img.h);
+		put_itow(g, x, y, img);
 		if (g->map.map[y][x] == 'C')
 			img = g->chest[g->frame];
 		else if (g->map.map[y][x] == 'P')
@@ -95,9 +106,7 @@ void	put_img(t_game *g, int x, int y)
 			img = g->sprite[3];
 	}
 	if (g->map.map[y][x] != '0')
-	{
-		put(g->m_ptr, g->m_win, img.img, pixel_x - img.w, pixel_y - img.h);
-	}
+		put_itow(g, x, y, img);
 }
 
 void	map_render(t_game *g)
@@ -215,17 +224,19 @@ void	enemy_path(t_game *g, int x, int y)
 
 void	update_enemy(t_game *g)
 {
-	int		index1;
-	int		index2;
+	int		i1;
+	int		i2;
+	char	tile;
 
-	index2 = -1;
-	while (++index2 < g->map.h)
+	i2 = -1;
+	while (++i2 < g->map.h)
 	{
-		index1 = -1;
-		while (++index1 < g->map.w)
+		i1 = -1;
+		while (++i1 < g->map.w)
 		{
-			if (g->map.map[index2][index1] == 'B' && g->last_moved[0] != index1 && g->last_moved[1] != index2)
-				enemy_path(g, index1, index2);
+			tile = g->map.map[i2][i1];
+			if (tile == 'B' && g->last_moved[0] != i1 && g->last_moved[1] != i2)
+				enemy_path(g, i1, i2);
 		}
 	}
 	g->last_moved[0] = -1;
@@ -236,10 +247,12 @@ void	move_character(t_game *g, int x, int y)
 {
 	int	pre_x;
 	int	pre_y;
+	char	tile;
 
 	pre_x = g->coord.x;
 	pre_y = g->coord.y;
-	if (g->map.map[y][x] != '1' && g->map.map[y][x] != 'E' && g->map.map[y][x] != 'B')
+	tile = g->map.map[y][x];
+	if (tile != '1' && tile != 'E' && tile != 'B')
 	{
 		update_enemy(g);
 		printf("You have done %d moves.\n", ++g->moves);
@@ -252,14 +265,9 @@ void	move_character(t_game *g, int x, int y)
 		g->coord.y = y;
 		put_img(g, x, y);
 	}
-	if (g->map.map[y][x] == 'E' && g->goal <= 0)
+	if ((tile == 'E' && g->goal <= 0) || tile == 'B')
 	{
 		printf("the end");
-		exit(0);
-	}
-	if (g->map.map[y][x] == 'B')
-	{
-		printf("You lost!");
 		exit(0);
 	}
 }
