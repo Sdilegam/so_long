@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/13 16:16:18 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/13 19:37:47 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LIB_DIR			=	libraries/
 SOURCES			=	${NAME}.c ${NAME}_utils.c#Files to compile#
 OBJECTS 		=	${addprefix ${OBJECTS_DIR}, ${SOURCES:.c=.o}}
 DEPENDS			=	${OBJECTS:.o=.d}
-LIBRARIES		=	mlx/libmlx.a gnl/libgnl.a ft_printf/libprintf.a
+LIBRARIES		=	gnl/libgnl.a ft_printf/libprintf.a
 EXECUTABLES		=	${NAME} #Modify if other executables needed#
 
 #####################################
@@ -88,9 +88,9 @@ ${addprefix ${LIB_DIR}, ${LIBRARIES}}:
 			${SILENT} make -sC $(@D)
 			${SILENT} echo "\rLibrary \"${notdir $@}\" created\033[K"
 
-${NAME}:		${OBJECTS} ${addprefix ${LIB_DIR}, ${LIBRARIES}}
+${NAME}:		${OBJECTS_DIR} ${addprefix ${LIB_DIR}, ${LIBRARIES}} ${OBJECTS}
 			${SILENT} echo "\r\"$@\" executable created\033[K"
-			${SILENT} ${CC} ${addprefix -L, ${addprefix ${LIB_DIR},${dir ${LIBRARIES}}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARIES}}}} -framework OpenGL -framework AppKit ${OBJECTS} -o $@ -g
+			${SILENT} ${CC} -lmlx ${addprefix -L, ${addprefix ${LIB_DIR},${dir ${LIBRARIES}}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARIES}}}} -framework OpenGL -framework AppKit ${OBJECTS} -o $@ -g
 			${SILENT} sleep ${SLEEP_TIME}
 
 			

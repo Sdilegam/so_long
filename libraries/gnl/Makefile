@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/13 14:03:12 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/13 19:35:09 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ ${OBJECTS_DIR}%.o:	${addprefix ${SOURCES_DIR}, %.c}
 			${SILENT}${CC} ${CC_FLAGS} -MMD -c $< -o ${OBJECTS_DIR}${@F:.c=.o}
 			${SILENT} sleep ${SLEEP_TIME}
 
-${NAME}:		${OBJECTS}
+${NAME}:		${OBJECTS_DIR} ${OBJECTS}
 			${SILENT} echo "\r\"$@\" library created\033[K"
 			${SILENT} ar -r $@ ${OBJECTS}
 			${SILENT} sleep ${SLEEP_TIME}
