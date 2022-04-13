@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 12:05:43 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/13 19:42:16 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:54:45 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_game
 	int			frame;
 	int			last_moved[2];
 }	t_game;
-void    finish_game(t_game *g, char tile);
+void	finish_game(t_game *g, char tile);
 
 char	*ft_itoa(int n);
 void	clean_exit(t_game *g);

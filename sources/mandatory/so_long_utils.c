@@ -6,13 +6,13 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:13:22 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/13 11:30:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:52:41 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	recc_assign(long i, char *a, unsigned index)
+void	recc_assign(long i, char *a, unsigned int index)
 {
 	if (i >= 10)
 		recc_assign(i / 10, a, index - 1);
@@ -21,9 +21,9 @@ void	recc_assign(long i, char *a, unsigned index)
 
 char	*ft_itoa(int n)
 {
-	unsigned	int_len;
-	long		temp_n;
-	char		*result;
+	unsigned int	int_len;
+	long int		temp_n;
+	char			*result;
 
 	int_len = 1;
 	temp_n = n;

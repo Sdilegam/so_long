@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/13 21:21:45 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:54:31 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +154,11 @@ void	update(t_game *g)
 	}
 }
 
-int loop_handler(t_game *g)
+int	loop_handler(t_game *g)
 {
-	static int index = -1;
-	static int index2 = 0;
-	static int index3 = -1;
-	t_img	temp;
+	static int	index = -1;
+	static int	index2 = 0;
+	t_img		temp;
 
 	if (++index2 == 1000)
 	{
@@ -268,9 +267,9 @@ void	put_string(t_game *g, char *string, int offset)
 void	print_moves(t_game *g)
 {
 	static int	i = 0;
+	static int	offset = 0;
 	char		*moves;
-	static int offset = 0;
-	int len;
+	int			len;
 
 	if (g->moves == 2147483647)
 		finish_game(g, 'I');
@@ -355,8 +354,8 @@ void	free_map(t_map map)
 
 void	clean_exit(t_game *g)
 {
-	int index1;
-	int index2;
+	int	index1;
+	int	index2;
 
 	index1 = -1;
 	while (++index1 < 4)
@@ -416,7 +415,7 @@ void	chara_image(t_game *g)
 	img[3].img = f(g->m_ptr, "Sprites/l4.xpm", &(img[3].w), &(img[3].h));
 }
 
-void environment_image(t_game *g)
+void	environment_image(t_game *g)
 {
 	t_img	*img;
 	void	*(*f)();
