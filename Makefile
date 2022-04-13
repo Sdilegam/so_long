@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/12 17:53:53 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/13 11:29:53 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIB_DIR			=	libraries/
 #									#
 #####################################
 
-SOURCES			=	${NAME}.c get_next_line.c get_next_line_utils.c#Files to compile#
+SOURCES			=	${NAME}.c ${NAME}_utils.c get_next_line.c get_next_line_utils.c#Files to compile#
 OBJECTS 		=	${addprefix ${OBJECTS_DIR}, ${SOURCES:.c=.o}}
 DEPENDS			=	${OBJECTS:.o=.d}
 LIBRARIES		=	mlx/libmlx.a

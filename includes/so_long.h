@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 12:05:43 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/12 19:35:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/13 12:02:00 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,22 @@ typedef struct s_coord
 
 typedef struct s_game
 {
-	t_coord	coord;
-	t_map	map;
-	t_img	chest[4];
-	t_img	sprite[5];
-	t_img	chara[4][4];
-	void	*m_ptr;
-	void	*m_win;
-	int		moves;
-	int		facing;
-	int		goal;
-	int		frame;
-	int		last_moved[2];
+	t_coord		coord;
+	t_map		map;
+	t_img		chest[4];
+	t_img		sprite[5];
+	t_img		chara[4][4];
+	void		*m_ptr;
+	void		*m_win;
+	long int	moves;
+	int			facing;
+	int			goal;
+	int			frame;
+	int			last_moved[2];
 }	t_game;
+void    finish_game(t_game *g, char tile);
+
+char	*ft_itoa(int n);
+void	clean_exit(t_game *g);
+
 #endif
