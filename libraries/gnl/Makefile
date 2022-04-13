@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/13 16:16:18 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/13 14:03:12 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 #																			   #
 ################################################################################
 
-NAME			=	so_long
+NAME			=	libgnl.a
 
 #####################################
 #									#
@@ -24,10 +24,8 @@ NAME			=	so_long
 #									#
 #####################################
 
-SOURCES_DIR		=	sources/
-SUB_DIR			=	mandatory/
-OBJECTS_DIR		=	${SOURCES_DIR}${SUB_DIR}objects/
-LIB_DIR			=	libraries/
+SOURCES_DIR		=	./
+OBJECTS_DIR		=	objects/
 
 #####################################
 #									#ƒ
@@ -35,10 +33,9 @@ LIB_DIR			=	libraries/
 #									#
 #####################################
 
-SOURCES			=	${NAME}.c ${NAME}_utils.c#Files to compile#
+SOURCES			=	get_next_line.c get_next_line_utils.c
 OBJECTS 		=	${addprefix ${OBJECTS_DIR}, ${SOURCES:.c=.o}}
 DEPENDS			=	${OBJECTS:.o=.d}
-LIBRARIES		=	mlx/libmlx.a gnl/libgnl.a ft_printf/libprintf.a
 EXECUTABLES		=	${NAME} #Modify if other executables needed#
 
 #####################################
@@ -48,10 +45,10 @@ EXECUTABLES		=	${NAME} #Modify if other executables needed#
 #####################################
 
 CC				=	gcc
-CC_FLAGS		=	-Iincludes ${addprefix -I, ${addprefix ${LIB_DIR},${dir ${LIBRARIES}}}}# -Wall -Werror -Wextra
+CC_FLAGS		=	-Wall -Werror -Wextra
 RM				=	rm -f
 SLEEP_TIME		=	0.2
-SILENT			=	
+SILENT			=	@
 
 
 ################################################################################
@@ -66,11 +63,10 @@ SILENT			=
 #									#
 #####################################
 
-all:				mandatory bonus
+all:				mandatory
 re:					fclean all
 
 mandatory:			${NAME}
-bonus:				
 
 #####################################
 #									#
@@ -78,19 +74,14 @@ bonus:
 #									#
 #####################################
 
-${OBJECTS_DIR}%.o:	${addprefix ${SOURCES_DIR}${SUB_DIR}, %.c}
+${OBJECTS_DIR}%.o:	${addprefix ${SOURCES_DIR}, %.c}
 			${SILENT} echo  "\rCreating \"${@F:.c=.o}\".\033[K\c"
-			${CC} ${CC_FLAGS} -MMD -c $< -o ${OBJECTS_DIR}${@F:.c=.o} -g
+			${SILENT}${CC} ${CC_FLAGS} -MMD -c $< -o ${OBJECTS_DIR}${@F:.c=.o}
 			${SILENT} sleep ${SLEEP_TIME}
 
-${addprefix ${LIB_DIR}, ${LIBRARIES}}:		
-			${SILENT} echo  "\rCreating \"${notdir $@}\".\033[K\c"
-			${SILENT} make -sC $(@D)
-			${SILENT} echo "\rLibrary \"${notdir $@}\" created\033[K"
-
-${NAME}:		${OBJECTS} ${addprefix ${LIB_DIR}, ${LIBRARIES}}
-			${SILENT} echo "\r\"$@\" executable created\033[K"
-			${SILENT} ${CC} ${addprefix -L, ${addprefix ${LIB_DIR},${dir ${LIBRARIES}}}} ${addprefix -l, ${patsubst lib%.a, %, ${notdir ${LIBRARIES}}}} -framework OpenGL -framework AppKit ${OBJECTS} -o $@ -g
+${NAME}:		${OBJECTS}
+			${SILENT} echo "\r\"$@\" library created\033[K"
+			${SILENT} ar -r $@ ${OBJECTS}
 			${SILENT} sleep ${SLEEP_TIME}
 
 			
@@ -102,27 +93,19 @@ ${NAME}:		${OBJECTS} ${addprefix ${LIB_DIR}, ${LIBRARIES}}
 #									#
 #####################################
 
-clean:
+clean: clean_lib
+
 			${SILENT} echo "\rRemoving objects files (${notdir ${OBJECTS}}).\033[K\c"
 			${SILENT} ${RM} ${OBJECTS} ${DEPENDS}
 			${SILENT} sleep ${SLEEP_TIME}
 
-clean_bonus:
-			#${SILENT} echo "\rSwitching to bonus files.\033[K\c"
-			#${SILENT} make clean SUFFIX=_bonus SUB_DIR=bonus/
-			#${SILENT} make clean_exe SUFFIX=_bonus SUB_DIR=bonus/
+clean_lib:
 
-${addprefix clean_,${dir ${LIBRARIES}}}:
-			${SILENT} echo "\rRemoving libraries (${patsubst clean_%,%, $@}).\033[K\c"
-			${SILENT}make clean -sC ${patsubst clean_%, libraries/%, $@}
-			${SILENT} sleep ${SLEEP_TIME}
-
-clean_exe:
 			${SILENT} echo "\rRemoving executables (${notdir ${EXECUTABLES}}).\033[K\c"
 			${SILENT} ${RM} ${EXECUTABLES}
 			${SILENT} sleep ${SLEEP_TIME}
 
-fclean:			clean ${addprefix clean_,${dir ${LIBRARIES}}} clean_exe #clean_bonus
+fclean:			clean clean_lib
 			${SILENT} echo "\rEverything removed.\033[K"
 				
 #####################################

@@ -64,7 +64,7 @@ char	*ft_return(char **string)
 	index = -1;
 	len = ft_find_chara(*string, '\n') + 1;
 	if (len == 0)
-		len = ft_strlen(*string);
+		len = ft_strlen1(*string);
 	answer = malloc (len + 1);
 	if (!answer)
 		return (0);

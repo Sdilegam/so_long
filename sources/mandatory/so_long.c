@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/13 12:04:27 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:55:15 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	put_img(t_game *g, int x, int y)
 		else if (g->map.map[y][x] == 'B')
 			img = g->sprite[2];
 		else if (g->map.map[y][x] == 'E')
-			img = g->sprite[3];
+			img = *g->exit;
 	}
 	if (g->map.map[y][x] != '0')
 		put_itow(g, x, y, img);
@@ -159,6 +159,7 @@ int loop_handler(t_game *g)
 	static int index = -1;
 	static int index2 = 0;
 	static int index3 = -1;
+	t_img	temp;
 
 	if (++index2 == 1000)
 	{
@@ -176,7 +177,7 @@ int loop_handler(t_game *g)
 	if (g->goal == 0)
 	{
 		g->goal = -1;
-		g->sprite[3] = g->sprite[4];
+		g->exit++;
 		put_img(g, g->coord.e_x, g->coord.e_y);
 	}
 	return (0);
@@ -247,7 +248,7 @@ void	finish_game(t_game *g, char tile)
 	if (tile == 'I')
 		write(1, "You made too much moves! :(\n", 28);
 	else if (tile == 'E')
-		printf("YOU WON IN %d MOVES!", ++g->moves);
+		ft_printf("YOU WON IN %d MOVES!\n", ++g->moves);
 	clean_exit(g);
 }
 
@@ -415,15 +416,17 @@ void	init_game(t_game *g, char *param)
 	void	*(*f)();
 
 	g->goal = 0;
-	g->moves = 214748;
+	g->moves = -1;
 	g->frame = 0;
 	g->facing = 0;
+	g->exit = &g->sprite[3];
 	g->m_ptr = mlx_init();
 	g->map = read_map(param);
 	g->m_win = mlx_new_window(g->m_ptr, g->map.w * BIT, g->map.h * BIT, "S_l");
 	environment_image(g);
 	chara_image(g);
 	map_render(g);
+	print_moves(g);
 }
 
 int	main(int argc, char *argv[])

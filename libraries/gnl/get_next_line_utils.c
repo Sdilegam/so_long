@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdi-lega <sdi-lega@student.19.be>          +#+  +:+       +#+        */
+/*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 10:04:18 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/01/28 15:38:11 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/13 13:35:51 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_find_chara(char *string, int chara)
  * @param string 
  * @return int length of string.
  */
-int	ft_strlen(char *string)
+int	ft_strlen1(char *string)
 {
 	int	index;
 
@@ -72,8 +72,8 @@ int	ft_cat(char **static_buff, char **string)
 	int		dest_index;
 
 	index = -1;
-	src_len = ft_strlen(*static_buff);
-	dest_len = src_len + ft_strlen(*string);
+	src_len = ft_strlen1(*static_buff);
+	dest_len = src_len + ft_strlen1(*string);
 	dest = malloc(dest_len + 1);
 	if (!dest)
 		return (1);
