@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/13 19:37:47 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/14 14:44:04 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,18 @@ LIB_DIR			=	libraries/
 #									#
 #####################################
 
-SOURCES			=	${NAME}.c ${NAME}_utils.c#Files to compile#
+SOURCES			=	\
+					end_game.c \
+					enemies.c \
+					errors.c \
+					ft_itoa.c \
+					handlers.c \
+					init_game.c \
+					player_movements.c \
+					so_long.c \
+					so_long_utils.c \
+					visual.c
+					
 OBJECTS 		=	${addprefix ${OBJECTS_DIR}, ${SOURCES:.c=.o}}
 DEPENDS			=	${OBJECTS:.o=.d}
 LIBRARIES		=	gnl/libgnl.a ft_printf/libprintf.a
@@ -48,10 +59,10 @@ EXECUTABLES		=	${NAME} #Modify if other executables needed#
 #####################################
 
 CC				=	gcc
-CC_FLAGS		=	-Iincludes ${addprefix -I, ${addprefix ${LIB_DIR},${dir ${LIBRARIES}}}}# -Wall -Werror -Wextra
+CC_FLAGS		=	-Iincludes ${addprefix -I, ${addprefix ${LIB_DIR},${dir ${LIBRARIES}}}} -Wall -Werror -Wextra
 RM				=	rm -f
 SLEEP_TIME		=	0.2
-SILENT			=	
+SILENT			=	@
 
 
 ################################################################################
@@ -80,7 +91,7 @@ bonus:
 
 ${OBJECTS_DIR}%.o:	${addprefix ${SOURCES_DIR}${SUB_DIR}, %.c}
 			${SILENT} echo  "\rCreating \"${@F:.c=.o}\".\033[K\c"
-			${CC} ${CC_FLAGS} -MMD -c $< -o ${OBJECTS_DIR}${@F:.c=.o} -g
+			${SILENT} ${CC} ${CC_FLAGS} -MMD -c $< -o ${OBJECTS_DIR}${@F:.c=.o} -g
 			${SILENT} sleep ${SLEEP_TIME}
 
 ${addprefix ${LIB_DIR}, ${LIBRARIES}}:		

@@ -5,43 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 20:13:22 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/13 21:52:41 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/14 15:04:33 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_utils.h"
 
-void	recc_assign(long i, char *a, unsigned int index)
+int	check_map_element(char element)
 {
-	if (i >= 10)
-		recc_assign(i / 10, a, index - 1);
-	a[index] = i % 10 + '0';
+	if (element != '1' && element != '0' && element != 'P' && \
+		element != 'E' && element != 'C' && element != 'B')
+		return (1);
+	return (0);
 }
 
-char	*ft_itoa(int n)
+int	get_len(char *string)
 {
-	unsigned int	int_len;
-	long int		temp_n;
-	char			*result;
+	int	index;
 
-	int_len = 1;
-	temp_n = n;
-	if (temp_n < 0)
-		int_len++;
-	while (!(n < 10 && n > -10))
+	index = 0;
+	while (string[index] != '\n' && string[index])
 	{
-		n /= 10;
-		int_len++;
+		if (check_map_element(string[index]) == 1)
+			error(1, string);
+		index++;
 	}
-	result = ft_calloc(int_len + 1, 1);
-	if (!result)
-		return (0);
-	if (n < 0)
-	{
-		result[0] = '-';
-		temp_n *= -1;
-	}
-	recc_assign(temp_n, result, int_len - 1);
-	return (result);
+	return (index);
 }
