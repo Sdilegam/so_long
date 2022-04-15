@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:35:37 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 11:47:54 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/15 14:40:57 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ void	move_character(t_game *g, int x, int y)
 		if (*tile == 'B')
 			finish_game(g, *tile);
 		g->moves++;
-		print_moves(g);
 		if (g->map.map[y][x] == 'C')
 			g->goal--;
 		g->map.map[g->coord.y][g->coord.x] = '0';
-		put_img(g, g->coord.x, g->coord.y);
 		g->coord.x = x;
 		g->coord.y = y;
 		g->map.map[y][x] = 'P';
-		put_img(g, x, y);
+		frame_render(g);
 	}
 	if ((*tile == 'E' && g->goal <= 0) || *tile == 'B')
 		finish_game(g, *tile);

@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:25:47 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 12:31:03 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:16:59 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,6 @@ void	finish_game(t_game *g, char tile);
 void	free_map(t_map map);
 
 void	clean_exit(t_game *g);
+
+int	close_game(t_game *g);
 #endif

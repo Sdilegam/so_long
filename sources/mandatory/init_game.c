@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:33:56 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 17:12:30 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/15 15:44:04 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_map	get_map_size(char *path)
 	return (map);
 }
 
-void	check_elements(t_map map)
+void	check_walls(t_map map)
 {
 	int	index;
 
@@ -118,6 +118,6 @@ t_map	read_map(char *path)
 		if (!map.map[index])
 			free_map_error(map.map, index);
 	}
-	check_elements(map);
+	check_walls(map);
 	return (map);
 }

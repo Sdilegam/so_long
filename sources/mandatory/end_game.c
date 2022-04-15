@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:25:47 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 12:25:58 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:17:02 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ void	clean_exit(t_game *g)
 	mlx_destroy_window(g->m_ptr, g->m_win);
 	free_map(g->map);
 	exit(0);
+}
+
+int	close_game(t_game *g)
+{
+	clean_exit(g);
+	return (0);
 }

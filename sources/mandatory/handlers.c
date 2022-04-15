@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 14:46:00 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/15 15:19:33 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,19 @@ void	update(t_game *g)
 
 int	loop_handler(t_game *g)
 {
-	static int	index = -1;
-	static int	index2 = 0;
+	static int	index2 = -1;
 
-	if (++index2 == 1000)
-	{
-		if (++index <= 3)
-			g->frame = index;
-		else
-			index = -1;
-		put_img(g, g->coord.x, g->coord.y);
-	}
-	if (index2 == 1500)
-	{
-		update(g);
-		index2 = 0;
-	}
+	index2 += 1;
+	g->frame = index2 / 10;
+	if (index2 == 39)
+		index2 = -1;
 	if (g->goal == 0)
 	{
 		g->goal = -1;
 		g->exit++;
 		put_img(g, g->coord.e_x, g->coord.e_y);
 	}
+	frame_render(g);
 	return (0);
 }
 

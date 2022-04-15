@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 12:05:43 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 14:45:35 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/15 14:24:34 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	finish_game(t_game *g, char tile);
 
 void	clean_exit(t_game *g);
 
-void	put_string(t_game *g, char *string, int offset);
+void	put_string(t_game *g, char *string, int offset, int id);
 
 void	print_moves(t_game *g);
 
