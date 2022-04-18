@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:28:16 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 16:50:35 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/18 16:59:59 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	error(int error_id, char *ptr)
 
 void	check_extension(char *str)
 {
-	
 	str += ft_strlen(str) - 4;
 	if (str[0] != '.' || str[1] != 'b' || str[2] != 'e' || str[3] != 'r')
 		error(6, "");

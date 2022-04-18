@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:13:38 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 15:06:46 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:05:35 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	put_itow(t_game *g, int x, int y, t_img sprite)
 	img = sprite.img;
 	size[0] = sprite.w;
 	size[1] = sprite.h;
-	mlx_put_image_to_window(ptr, win, img, x - size[0], y - size[1] );
+	mlx_put_image_to_window(ptr, win, img, x - size[0], y - size[1]);
 }
 
 void	put_img(t_game *g, int x, int y)
@@ -54,13 +54,15 @@ void	put_img(t_game *g, int x, int y)
 
 void	get_offset(t_game *g)
 {
-	if (g->coord.x >= (g->w_size[0] / 2) && g->map.w - (g->w_size[0] / 2) > g->coord.x)
+	if (g->coord.x >= (g->w_size[0] / 2) \
+	&& g->map.w - (g->w_size[0] / 2) > g->coord.x)
 		g->w_size[2] = g->coord.x - (g->w_size[0] / 2);
-	if (g->map.w - (g->w_size[0] / 2) < g->coord.x)
+	else if (g->map.w - (g->w_size[0] / 2) < g->coord.x)
 		g->w_size[2] = g->map.w - (g->w_size[0]);
-	if (g->coord.y >= (g->w_size[1] / 2) && g->map.h - (g->w_size[1] / 2) > g->coord.y)
+	if (g->coord.y >= (g->w_size[1] / 2) \
+	&& g->map.h - (g->w_size[1] / 2) > g->coord.y)
 		g->w_size[3] = g->coord.y - (g->w_size[1] / 2);
-	if (g->map.h - (g->w_size[1] / 2) < g->coord.y)
+	else if (g->map.h - (g->w_size[1] / 2) < g->coord.y)
 		g->w_size[3] = g->map.h - (g->w_size[1]);
 }
 
@@ -71,12 +73,12 @@ void	frame_render(t_game *g)
 
 	index2 = -1;
 	get_offset(g);
-	if (g->coord.y - (g->w_size[1] / 2) > 0)
+	if (g->coord.y >= (g->w_size[1] / 2))
 		index2 = g->w_size[3] - 1;
 	while (++index2 < g->w_size[1] + g->w_size[3])
 	{
 		index1 = -1;
-		if (g->coord.x < (g->w_size[0] / 2))
+		if (g->coord.x <= (g->w_size[0] / 2))
 			index1 = g->w_size[2] - 1;
 		while (++index1 < g->w_size[0] + g->w_size[2])
 		{

@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 12:05:43 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 14:24:34 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:03:14 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "ft_itoa.h"
 # include "handlers.h"
 # include "init_game.h"
+# include "moves_bonus.h"
 # include "player_movements.h"
 # include "so_long_utils.h"
 # include "visual.h"

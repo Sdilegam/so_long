@@ -6,7 +6,7 @@
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 15:19:33 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:18:38 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	loop_handler(t_game *g)
 	static int	index2 = -1;
 
 	index2 += 1;
-	g->frame = index2 / 10;
-	if (index2 == 39)
+	g->frame = index2 / 5;
+	if (index2 == 19)
 		index2 = -1;
 	if (g->goal == 0)
 	{

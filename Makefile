@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/14 14:44:04 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/18 17:06:08 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SOURCES			=	\
 					ft_itoa.c \
 					handlers.c \
 					init_game.c \
+					moves_bonus.c \
 					player_movements.c \
 					so_long.c \
 					so_long_utils.c \
