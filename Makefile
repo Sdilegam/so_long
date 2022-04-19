@@ -6,7 +6,7 @@
 #    By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 11:25:36 by sdi-lega          #+#    #+#              #
-#    Updated: 2022/04/19 16:16:07 by sdi-lega         ###   ########.fr        #
+#    Updated: 2022/04/19 16:20:28 by sdi-lega         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,7 +167,7 @@ fclean:			clean ${addprefix clean_,${dir ${LIBRARIES}}} clean_exe clean_bonus
 #									#
 #####################################
 
-${OBJECTS_DIR}:ms
+${OBJECTS_DIR}:
 			mkdir ${OBJECTS_DIR}
 ${BONUS_OBJECTS_DIR}:
 			mkdir ${BONUS_OBJECTS_DIR}
