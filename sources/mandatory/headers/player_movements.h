@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                              :+:      :+:    :+:   */
+/*   player_movements.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:30:14 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 11:45:21 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 14:31:37 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_utils.h"
+#ifndef PLAYER_MOVEMENTS_H
+# define PLAYER_MOVEMENTS_H
 
-int	check_map_element(char element)
-{
-	if (element != '1' && element != '0' && element != 'P' && \
-		element != 'E' && element != 'C')
-		return (1);
-	return (0);
-}
+# include "so_long.h"
 
-int	get_len(char *string)
-{
-	int	index;
+void	move_character(t_game *g, int x, int y);
 
-	index = 0;
-	while (string[index] != '\n' && string[index])
-	{
-		if (check_map_element(string[index]) == 1)
-			error(1, string);
-		index++;
-	}
-	return (index);
-}
+void	move_keys(int key, t_game *g);
+
+#endif /* PLAYER_MOVEMENTS_H */

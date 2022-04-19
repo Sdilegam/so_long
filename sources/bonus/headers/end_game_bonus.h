@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.h                                        :+:      :+:    :+:   */
+/*   end_game_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 11:54:39 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 14:40:12 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 12:25:47 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:22 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_GAME_H
-# define INIT_GAME_H
+#ifndef END_GAME_BONUS_H
+# define END_GAME_BONUS_H
 
-# include "so_long.h"
+# include "so_long_bonus.h"
 
-void	chara_image(t_game *g);
+void	finish_game(t_game *g, char tile);
 
-void	environment_image(t_game *g);
+void	free_map(t_map map);
 
-t_map	get_map_size(char *path);
+void	clean_exit(t_game *g);
 
-t_map	read_map(char *path);
+int		close_game(t_game *g);
 
-#endif /* INIT_GAME_H */
+#endif /* END_GAME__BONUS_H */

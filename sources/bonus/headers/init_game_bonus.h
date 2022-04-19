@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_bonus.h                                      :+:      :+:    :+:   */
+/*   init_game_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 17:03:44 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/18 17:03:48 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 11:54:39 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:00 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MOVES_BONUS_H
-# define MOVES_BONUS_H
+#ifndef INIT_GAME_BONUS_H
+# define INIT_GAME_BONUS_H
 
-# include "so_long.h"
+# include "so_long_bonus.h"
 
-void	put_string(t_game *g, char *string, int offset, int id);
+void	chara_image(t_game *g);
 
-void	print_moves(t_game *g);
+void	environment_image(t_game *g);
 
-#endif /* MOVES_BONUS_H */
+t_map	get_map_size(char *path);
+
+t_map	read_map(char *path);
+
+#endif /* INIT_GAME_BONUS_H */

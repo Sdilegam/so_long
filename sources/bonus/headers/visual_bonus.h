@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_game.h                                         :+:      :+:    :+:   */
+/*   visual_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 12:25:47 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 16:16:59 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 12:14:38 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:00 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef END_GAME_H
-# define END_GAME_H
+#ifndef VISUAL_BONUS_H
+# define VISUAL_BONUS_H
 
-# include "so_long.h"
+# include "so_long_bonus.h"
 
-void	finish_game(t_game *g, char tile);
+void	put_itow(t_game *g, int x, int y, t_img sprite);
 
-void	free_map(t_map map);
+void	put_img(t_game *g, int x, int y);
+void	frame_render(t_game *g);
+void	update(t_game *g);
 
-void	clean_exit(t_game *g);
-
-int	close_game(t_game *g);
-#endif
+#endif /* VISUAL_BONUS_H */

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_game.c                                   :+:      :+:    :+:   */
+/*   end_game_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "end_game.h"
+#include "end_game_bonus.h"
 
 void	finish_game(t_game *g, char tile)
 {
+	if (tile == 'B')
+		write(1, "You got killed by the evil painting! :(\n", 40);
 	if (tile == 'I')
 		write(1, "You made too much moves! :(\n", 28);
 	else if (tile == 'E')
@@ -37,15 +39,17 @@ void	clean_exit(t_game *g)
 	int	index2;
 
 	index1 = -1;
-	mlx_destroy_image(g->m_ptr, g->chest.img);
-	index1 = -1;
 	while (++index1 < 4)
+		mlx_destroy_image(g->m_ptr, g->chest[index1].img);
+	index1 = -1;
+	while (++index1 < 5)
 		mlx_destroy_image(g->m_ptr, g->sprite[index1].img);
 	index1 = -1;
 	while (++index1 < 4)
 	{
 		index2 = -1;
-		mlx_destroy_image(g->m_ptr, g->chara[index1].img);
+		while (++index2 < 4)
+			mlx_destroy_image(g->m_ptr, g->chara[index1][index2].img);
 	}
 	mlx_destroy_window(g->m_ptr, g->m_win);
 	free_map(g->map);

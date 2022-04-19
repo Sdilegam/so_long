@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                    :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:30:12 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:06:00 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	set_win_size(t_game *g)
 {
@@ -68,10 +68,11 @@ void	init_game(t_game *g, char *param)
 {
 	g->goal = 0;
 	g->moves = 0;
+	g->frame = 0;
 	g->facing = 0;
 	g->coord.x = 0;
 	g->coord.y = 0;
-	g->exit = &g->sprite[2];
+	g->exit = &g->sprite[3];
 	g->m_ptr = mlx_init();
 	g->map = read_map(param);
 	set_win_size(g);

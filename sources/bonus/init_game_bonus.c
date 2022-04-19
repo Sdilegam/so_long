@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                  :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init_game.h"
+#include "init_game_bonus.h"
 
 void	chara_image(t_game *g)
 {
 	t_img	*img;
 	void	*(*f)();
 
-	img = g->chara;
+	img = g->chara[0];
 	f = mlx_xpm_file_to_image;
 	img[0].img = f(g->m_ptr, "Sprites/u1.xpm", &(img[0].w), &(img[0].h));
-	img[1].img = f(g->m_ptr, "Sprites/d1.xpm", &(img[1].w), &(img[1].h));
-	img[2].img = f(g->m_ptr, "Sprites/r1.xpm", &(img[2].w), &(img[2].h));
-	img[3].img = f(g->m_ptr, "Sprites/l1.xpm", &(img[3].w), &(img[3].h));
+	img[1].img = f(g->m_ptr, "Sprites/u2.xpm", &(img[1].w), &(img[1].h));
+	img[2].img = f(g->m_ptr, "Sprites/u3.xpm", &(img[2].w), &(img[2].h));
+	img[3].img = f(g->m_ptr, "Sprites/u4.xpm", &(img[3].w), &(img[3].h));
+	img = g->chara[1];
+	img[0].img = f(g->m_ptr, "Sprites/d1.xpm", &(img[0].w), &(img[0].h));
+	img[1].img = f(g->m_ptr, "Sprites/d2.xpm", &(img[1].w), &(img[1].h));
+	img[2].img = f(g->m_ptr, "Sprites/d3.xpm", &(img[2].w), &(img[2].h));
+	img[3].img = f(g->m_ptr, "Sprites/d4.xpm", &(img[3].w), &(img[3].h));
+	img = g->chara[2];
+	img[0].img = f(g->m_ptr, "Sprites/r1.xpm", &(img[0].w), &(img[0].h));
+	img[1].img = f(g->m_ptr, "Sprites/r2.xpm", &(img[1].w), &(img[1].h));
+	img[2].img = f(g->m_ptr, "Sprites/r3.xpm", &(img[2].w), &(img[2].h));
+	img[3].img = f(g->m_ptr, "Sprites/r4.xpm", &(img[3].w), &(img[3].h));
+	img = g->chara[3];
+	img[0].img = f(g->m_ptr, "Sprites/l1.xpm", &(img[0].w), &(img[0].h));
+	img[1].img = f(g->m_ptr, "Sprites/l2.xpm", &(img[1].w), &(img[1].h));
+	img[2].img = f(g->m_ptr, "Sprites/l3.xpm", &(img[2].w), &(img[2].h));
+	img[3].img = f(g->m_ptr, "Sprites/l4.xpm", &(img[3].w), &(img[3].h));
 }
 
 void	environment_image(t_game *g)
@@ -30,14 +45,18 @@ void	environment_image(t_game *g)
 	t_img	*img;
 	void	*(*f)();
 
-	img = &g->chest;
+	img = g->chest;
 	f = mlx_xpm_file_to_image;
-	img->img = f(g->m_ptr, "sprites/chest1.xpm", &(img->w), &(img->h));
+	img[0].img = f(g->m_ptr, "sprites/chest1.xpm", &(img[0].w), &(img[0].h));
+	img[1].img = f(g->m_ptr, "sprites/chest2.xpm", &(img[1].w), &(img[1].h));
+	img[2].img = f(g->m_ptr, "sprites/chest3.xpm", &(img[2].w), &(img[2].h));
+	img[3].img = f(g->m_ptr, "sprites/chest4.xpm", &(img[3].w), &(img[3].h));
 	img = g->sprite;
 	img[0].img = f(g->m_ptr, "sprites/wall.xpm", &(img[0].w), &(img[0].h));
 	img[1].img = f(g->m_ptr, "sprites/floor.xpm", &(img[1].w), &(img[1].h));
-	img[2].img = f(g->m_ptr, "sprites/c_end.xpm", &(img[2].w), &(img[2].h));
-	img[3].img = f(g->m_ptr, "sprites/o_end.xpm", &(img[3].w), &(img[3].h));
+	img[2].img = f(g->m_ptr, "sprites/enemy.xpm", &(img[2].w), &(img[2].h));
+	img[3].img = f(g->m_ptr, "sprites/c_end.xpm", &(img[3].w), &(img[3].h));
+	img[4].img = f(g->m_ptr, "sprites/o_end.xpm", &(img[4].w), &(img[4].h));
 }
 
 t_map	get_map_size(char *path)

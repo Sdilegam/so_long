@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movements.h                                 :+:      :+:    :+:   */
+/*   handlers_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 11:45:21 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 11:47:09 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/19 16:10:38 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:39 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_MOVEMENTS_H
-# define PLAYER_MOVEMENTS_H
+#ifndef HANDLERS_BONUS_H
+# define HANDLERS_BONUS_H
 
-# include "so_long.h"
+# include "so_long_bonus.h"
 
-void	move_character(t_game *g, int x, int y);
+void	update(t_game *g);
 
-void	move_keys(int key, t_game *g);
+int		loop_handler(t_game *g);
 
-#endif /* PLAYER_MOVEMENTS_H */
+int		handle_keys(int key, void *game);
+
+#endif /* HANDLERS_BONUS_H */

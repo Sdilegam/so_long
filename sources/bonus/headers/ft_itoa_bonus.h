@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                              :+:      :+:    :+:   */
+/*   ft_itoa_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:30:14 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 11:51:35 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:10 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_utils.h"
+#ifndef FT_ITOA_BONUS_H
+# define FT_ITOA_BONUS_H
+# include "get_next_line.h"
 
-int	check_map_element(char element)
-{
-	if (element != '1' && element != '0' && element != 'P' && \
-		element != 'E' && element != 'C')
-		return (1);
-	return (0);
-}
+void	recc_assign(long i, char *a, unsigned int index);
 
-int	get_len(char *string)
-{
-	int	index;
+char	*ft_itoa(int n);
 
-	index = 0;
-	while (string[index] != '\n' && string[index])
-	{
-		if (check_map_element(string[index]) == 1)
-			error(1, string);
-		index++;
-	}
-	return (index);
-}
+#endif /* FT_ITOA_BONUS_H */

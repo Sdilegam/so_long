@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                              :+:      :+:    :+:   */
+/*   errors_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:30:14 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 15:06:21 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:18 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_utils.h"
+#ifndef ERRORS_BONUS_H
+# define ERRORS_BONUS_H
 
-int	check_map_element(char element)
-{
-	if (element != '1' && element != '0' && element != 'P' && \
-		element != 'E' && element != 'C')
-		return (1);
-	return (0);
-}
+# include "so_long_bonus.h"
 
-int	get_len(char *string)
-{
-	int	index;
+void	error(int error_id, char *ptr);
+void	free_map_error(char **map, int index);
+void	check_extension(char *str);
 
-	index = 0;
-	while (string[index] != '\n' && string[index])
-	{
-		if (check_map_element(string[index]) == 1)
-			error(1, string);
-		index++;
-	}
-	return (index);
-}
+#endif /* ERRORS_BONUS_H */

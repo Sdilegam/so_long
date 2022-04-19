@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                              :+:      :+:    :+:   */
+/*   enemies_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:30:14 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 12:19:32 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:10:31 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_utils.h"
+#ifndef ENEMIES_BONUS_H
+# define ENEMIES_BONUS_H
 
-int	check_map_element(char element)
-{
-	if (element != '1' && element != '0' && element != 'P' && \
-		element != 'E' && element != 'C')
-		return (1);
-	return (0);
-}
+# include "so_long_bonus.h"
 
-int	get_len(char *string)
-{
-	int	index;
+void	move_enemy(t_game *g, int x, int y, int dest[2]);
 
-	index = 0;
-	while (string[index] != '\n' && string[index])
-	{
-		if (check_map_element(string[index]) == 1)
-			error(1, string);
-		index++;
-	}
-	return (index);
-}
+void	enemy_path(t_game *g, int x, int y);
+
+void	update_enemy(t_game *g);
+#endif /* ENEMIES_BONUS_H */

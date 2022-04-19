@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                              :+:      :+:    :+:   */
+/*   so_long_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_utils.h"
+#include "so_long_utils_bonus.h"
 
 int	check_map_element(char element)
 {
 	if (element != '1' && element != '0' && element != 'P' && \
-		element != 'E' && element != 'C')
+		element != 'E' && element != 'C' && element != 'B')
 		return (1);
 	return (0);
 }

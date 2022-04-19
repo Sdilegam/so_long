@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visual.c                                     :+:      :+:    :+:   */
+/*   visual_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visual.h"
+#include "visual_bonus.h"
 
 void	put_itow(t_game *g, int x, int y, t_img sprite)
 {
@@ -40,9 +40,11 @@ void	put_img(t_game *g, int x, int y)
 		img = g->sprite[1];
 		put_itow(g, x, y, img);
 		if (g->map.map[y][x] == 'C')
-			img = g->chest;
+			img = g->chest[g->frame];
 		else if (g->map.map[y][x] == 'P')
-			img = g->chara[g->facing];
+			img = g->chara[g->facing][g->frame];
+		else if (g->map.map[y][x] == 'B')
+			img = g->sprite[2];
 		else if (g->map.map[y][x] == 'E')
 			img = *g->exit;
 	}
@@ -83,4 +85,5 @@ void	frame_render(t_game *g)
 			put_img(g, index1, index2);
 		}
 	}
+	print_moves(g);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_definitions.h                                 :+:      :+:    :+:   */
+/*   type_definitions_bonus.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:59:33 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 11:21:39 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:10:00 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPE_DEFINITIONS_H
-# define TYPE_DEFINITIONS_H
-# include "so_long.h"
+#ifndef TYPE_DEFINITIONS_BONUS_H
+# define TYPE_DEFINITIONS_BONUS_H
+# include "so_long_bonus.h"
 
 typedef struct s_img {
 	void	*img;
@@ -29,10 +29,6 @@ typedef struct s_coord
 {
 	int	x;
 	int	y;
-	int	e_x;
-	int	e_y;
-	int	b_x;
-	int	b_y;
 }	t_coord;
 
 typedef struct s_game
@@ -52,4 +48,4 @@ typedef struct s_game
 	int			goal;
 	int			frame;
 }	t_game;
-#endif /* TYPE_DEFINITIONS_H */
+#endif /* TYPE_DEFINITIONS_BONUS_H */

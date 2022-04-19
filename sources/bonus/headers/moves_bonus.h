@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                              :+:      :+:    :+:   */
+/*   moves_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:30:14 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/18 17:03:44 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:11:04 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_utils.h"
+#ifndef MOVES_BONUS_H
+# define MOVES_BONUS_H
 
-int	check_map_element(char element)
-{
-	if (element != '1' && element != '0' && element != 'P' && \
-		element != 'E' && element != 'C')
-		return (1);
-	return (0);
-}
+# include "so_long_bonus.h"
 
-int	get_len(char *string)
-{
-	int	index;
+void	put_string(t_game *g, char *string, int offset, int id);
 
-	index = 0;
-	while (string[index] != '\n' && string[index])
-	{
-		if (check_map_element(string[index]) == 1)
-			error(1, string);
-		index++;
-	}
-	return (index);
-}
+void	print_moves(t_game *g);
+
+#endif /* MOVES_BONUS_H */

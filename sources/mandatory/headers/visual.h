@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemies.h                                          :+:      :+:    :+:   */
+/*   visual.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 12:19:32 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 12:31:41 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/14 12:14:38 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 14:30:33 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENEMIES_H
-# define ENEMIES_H
+#ifndef VISUAL_H
+# define VISUAL_H
 
 # include "so_long.h"
 
-void	move_enemy(t_game *g, int x, int y, int dest[2]);
+void	put_itow(t_game *g, int x, int y, t_img sprite);
 
-void	enemy_path(t_game *g, int x, int y);
+void	put_img(t_game *g, int x, int y);
+void	frame_render(t_game *g);
+void	update(t_game *g);
 
-void	update_enemy(t_game *g);
-#endif /* ENEMIES_H */
+#endif /* VISUAL_H */

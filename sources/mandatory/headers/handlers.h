@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visual.h                                           :+:      :+:    :+:   */
+/*   handlers.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 12:14:38 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/15 11:44:20 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/19 16:11:39 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:11:40 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VISUAL_H
-# define VISUAL_H
+#ifndef HANDLERS_H
+# define HANDLERS_H
 
 # include "so_long.h"
 
-void	put_itow(t_game *g, int x, int y, t_img sprite);
-
-void	put_img(t_game *g, int x, int y);
-void	frame_render(t_game *g);
 void	update(t_game *g);
 
-#endif /* VISUAL_H */
+int		loop_handler(t_game *g);
+
+int		handle_keys(int key, void *game);
+
+#endif /* HANDLERS_H */

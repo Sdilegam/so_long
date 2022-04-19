@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   so_long_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/14 15:06:21 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/14 17:13:11 by sdi-lega         ###   ########.fr       */
+/*   Created: 2022/04/19 16:11:46 by sdi-lega          #+#    #+#             */
+/*   Updated: 2022/04/19 16:11:47 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#ifndef SO_LONG_UTILS_H
+# define SO_LONG_UTILS_H
 
 # include "so_long.h"
 
-void	error(int error_id, char *ptr);
-void	free_map_error(char **map, int index);
-void	check_extension(char *str);
+int	get_len(char *string);
 
-#endif /* ERRORS_H */
+#endif /* SO_LONG_UTILS_H */

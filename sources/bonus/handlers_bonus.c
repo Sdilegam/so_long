@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers.c                                   :+:      :+:    :+:   */
+/*   handlers_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdi-lega <sdi-lega@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 12:26:40 by sdi-lega          #+#    #+#             */
-/*   Updated: 2022/04/19 14:29:58 by sdi-lega         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:05:38 by sdi-lega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "handlers.h"
+#include "handlers_bonus.h"
 
 void	update(t_game *g)
 {
@@ -31,6 +31,12 @@ void	update(t_game *g)
 
 int	loop_handler(t_game *g)
 {
+	static int	index2 = -1;
+
+	index2 += 1;
+	g->frame = index2 / 5;
+	if (index2 == 19)
+		index2 = -1;
 	if (g->goal == 0)
 	{
 		g->goal = -1;
