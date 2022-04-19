@@ -1,9 +1,0 @@
-{
-	"C_Cpp.errorSquiggles": "Enabled",
-	"files.associations": {
-		"mlx.h": "c",
-		"so_long.h": "c",
-		"end_game_bonus.h": "c",
-		"ft_itoa.h": "c"
-	}
-}
